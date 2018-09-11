@@ -49,36 +49,21 @@ namespace collectionsArrays
             //    Console.WriteLine($"{array2[i]} occurs {counter} times");
             //}
 
-            int[] array3 = new int[10];
-            Random random = new Random();
+            int[] array3 = new int[100];
+            Random rand = new Random();
 
             for (int i = 0; i < array3.Length; i++)
             {
-                int randomNum;
-                bool match = true;
+                int num = rand.Next(1, 101);
                 do
                 {
-                    array3[i] = randomNum;
-                    randomNum = random.Next(1, 11);
-                    foreach (int number in array3)
-                    {
-                        Console.WriteLine(randomNum);
-                        if (randomNum == number)
-                        {
-                            Console.WriteLine("True " + number);
-                            match = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine("False " + number);
-                            match = false;
+                    num = rand.Next(1, 101);
+                } while (array3.Contains(num));
 
-                        }
-                    }
-                } while (match);
-                
+                array3[i] = num;
             }
 
+            BubbleSort(array3);
 
             foreach (int number in array3)
             {
@@ -94,19 +79,30 @@ namespace collectionsArrays
             }
             else Console.WriteLine($"The number {searchNum} was searched for in the array, the number was found in the {result} indices");
 
+            
+            //* METHODS */
 
+            // Bubble sort
+            int[] BubbleSort(int[] _arr)
+            {
+                int temp = _arr[0];
 
+                for (int i = 0; i < _arr.Length; i++)
+                {
+                    for (int j = i + 1; j < _arr.Length; j++)
+                    {
+                        if (_arr[i] > _arr[j])
+                        {
+                            temp = _arr[i];
 
+                            _arr[i] = _arr[j];
 
-
-
-            ///* METHODS */
-
-            //int ArrayCount(int[] array)
-            //{
-
-            //}
+                            _arr[j] = temp;
+                        }
+                    }
+                }
+                return _arr;
+            }
         }
-        
     }
 }
